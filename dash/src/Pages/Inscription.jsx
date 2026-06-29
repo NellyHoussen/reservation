@@ -1,7 +1,18 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 function Inscription(){
     const [loading,setLoading] = useState(false);
+    const [error,setError]=useState(null);
+    const [form,setForm]=useState({identifiant: "",password: "",checkPassword:""})
+    const navigate=useNavigate();
+    const handleChange =(e) =>{
+        setForm({...form,[e.target.name]:e.target.value})
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(null);
+        setLoading(true);
+    }
 
 return(
     <div className="flex flex-col items-center justify-center min-h-screen bg-amber-50/40 px-4">
@@ -12,10 +23,10 @@ return(
             Prêt pour l'aventure ?
           </h1>
           <p className="text-sm text-amber-800/70 font-medium">
-            Connectez-vous pour explorer votre espace voyage.
+            Inscrivez-vous pour explorer votre espace voyage.
           </p>
         </div>
-        <form className="flex flex-col gap-5">
+        <form onSubmit ={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
                 <label htmlFor="identifiant" className="text-sm font-semibold text-amber-950/80">
                 Identifiant
@@ -25,6 +36,7 @@ return(
               name="identifiant"
               type="text"
               placeholder="Votre identifiant"
+              onChange ={handleChange}
               required
               className="w-full text-base border border-amber-200/60 rounded-xl px-4 py-3 bg-amber-50/20 focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition-all duration-200 placeholder-amber-700/30 text-amber-950"/> 
             </div>
@@ -47,10 +59,11 @@ return(
             </label>
             <input
               id="password"
-              name="password"
+              name="checkPassword"
               type="password"
               placeholder="••••••••"
               required
+              onChange={handleChange}
               className="w-full text-base border border-amber-200/60 rounded-xl px-4 py-3 bg-amber-50/20 focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition-all duration-200 placeholder-amber-700/30 text-amber-950"
             />
           </div>
