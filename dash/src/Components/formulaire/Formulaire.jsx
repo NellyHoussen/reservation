@@ -1,12 +1,7 @@
-import NavBar from "../home/NavBar";
+
 function Connexion(){
     return(
-        <div>
-            <div>
-                <NavBar />
-            </div>
-        </div>
-
+        <h1></h1>
     )
 }
 export default Connexion;

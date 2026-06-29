@@ -5,6 +5,7 @@ import Contact from "./Pages/Contact";
 import Connexion from "./Pages/Connexion";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import NavBar from "./Components/home/NavBar";
+import Inscription from "./Pages/Inscription";
 function App() {
    /*
   h-* : hauteur
@@ -33,6 +34,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/Inscription" element={<Inscription />} />
       </Routes>
     </BrowserRouter>    
   )
