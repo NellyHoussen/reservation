@@ -11,14 +11,16 @@ async function request(endpoint, options = {}) {
 
   const text = await response.text();
   const data = text ? JSON.parse(text) : {};
-
-  if (!response.ok) {
-    throw new Error(data.message || 'Une erreur est survenue');
+if (!response.ok) {
+  if (data.validationErrors?.length) {
+    const detail = data.validationErrors
+      .map(e => e.message)
+      .join(', ');
+    throw new Error(detail);
   }
-
-  return data;
+  throw new Error(data.message || 'Une erreur est survenue');
 }
-
+}
 export const userService = {
   login: (dto) => request('/users/login', {
     method: 'POST',

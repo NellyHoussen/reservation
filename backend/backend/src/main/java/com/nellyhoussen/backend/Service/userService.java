@@ -1,7 +1,9 @@
 package com.nellyhoussen.backend.Service;
 
-import com.nellyhoussen.backend.DTO.userGet;
-import com.nellyhoussen.backend.DTO.userPost;
+import com.nellyhoussen.backend.DTO.Inscription.InscriptionGet;
+import com.nellyhoussen.backend.DTO.Inscription.InscriptionPost;
+import com.nellyhoussen.backend.DTO.User.userGet;
+import com.nellyhoussen.backend.DTO.User.userPost;
 import com.nellyhoussen.backend.Entity.user;
 import com.nellyhoussen.backend.Error.ConflitException;
 import com.nellyhoussen.backend.Error.RessourceNotFoundException;
@@ -9,7 +11,6 @@ import com.nellyhoussen.backend.Error.BusinessRuleException;
 import com.nellyhoussen.backend.Repository.userRepository;
 import com.nellyhoussen.backend.mapStruct.userMap;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +27,20 @@ public class userService {
     }
 
     @Transactional
-    public userGet registre(userPost dto) {
+    public InscriptionGet registre(InscriptionPost dto) {
         if (repository.existsByIdentifiant(dto.identifiant())) {
             log.warn("Identifiant déjà utilisé : {}", dto.identifiant());
             throw new ConflitException("Identifiant déjà utilisé");
         }
+        if(!dto.password().equals(dto.password())) {
+            log.warn("Mots de passe non identiques pour : {}", dto.identifiant());
+            throw new BusinessRuleException("Les mots de passe ne correspondent pas");
+        }
 
-        user entity = mapper.toEntity(dto);
+        user entity = mapper.toEntityRegistre(dto);
         user saved = repository.save(entity);
-
         log.info("Utilisateur enregistré avec succès : {}", saved.getIdentifiant());
-        return mapper.toDto(saved);
+        return mapper.toDtoRegistre(saved);
     }
 
     public userGet login(userPost dto) {

@@ -4,10 +4,10 @@ import com.nellyhoussen.backend.Error.AppException;
 import org.springframework.http.HttpStatus;
 
 public class RessourceNotFoundException extends AppException {
-    public RessourceNotFoundException(String message, Long id) {
-        super(id != null
-                        ? message + " not found with id " + id
-                        : message + " introuvable",
-                HttpStatus.NOT_FOUND);
+    public RessourceNotFoundException(String message) {
+        super( message , HttpStatus.NOT_FOUND);
+    }
+    public  static RessourceNotFoundException pour(String ressource,Long id){
+        return  new RessourceNotFoundException(ressource+ "introuvable avec id" + id);
     }
 }

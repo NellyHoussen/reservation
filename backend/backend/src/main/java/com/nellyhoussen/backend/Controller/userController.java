@@ -1,7 +1,9 @@
 package com.nellyhoussen.backend.Controller;
 
-import com.nellyhoussen.backend.DTO.userGet;
-import com.nellyhoussen.backend.DTO.userPost;
+import com.nellyhoussen.backend.DTO.Inscription.InscriptionGet;
+import com.nellyhoussen.backend.DTO.Inscription.InscriptionPost;
+import com.nellyhoussen.backend.DTO.User.userGet;
+import com.nellyhoussen.backend.DTO.User.userPost;
 import com.nellyhoussen.backend.Service.userService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +23,9 @@ public class userController {
     private final userService service;
 
     @PostMapping("/register")
-    public ResponseEntity<userGet> register(@Valid @RequestBody userPost dto) {
+    public ResponseEntity<InscriptionGet> register(@Valid @RequestBody InscriptionPost dto) {
         log.info("POST /api/v1/users/register - identifiant: {}", dto.identifiant());
-        userGet response = service.registre(dto);
+        InscriptionGet response = service.registre(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

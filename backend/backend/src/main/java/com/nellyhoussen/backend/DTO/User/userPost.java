@@ -1,4 +1,4 @@
-package com.nellyhoussen.backend.DTO;
+package com.nellyhoussen.backend.DTO.User;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

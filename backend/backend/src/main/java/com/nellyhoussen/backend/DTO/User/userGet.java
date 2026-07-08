@@ -1,4 +1,4 @@
-package com.nellyhoussen.backend.DTO;
+package com.nellyhoussen.backend.DTO.User;
 
 public record userGet(
         Long id,
