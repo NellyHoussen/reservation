@@ -5,7 +5,15 @@ import { userService } from "../services/api";
 function Inscription() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [form, setForm] = useState({ identifiant: "", password: "", checkPassword: "" });
+  const [form, setForm] = useState({
+    identifiant: "",
+    password: "",
+    checkPassword: "",
+    nom: "",
+    prenom: "",
+    email: "",
+    telephone: "",
+  });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -28,7 +36,7 @@ function Inscription() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-amber-50/40 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-amber-50/40 px-4 py-10">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md shadow-amber-900/5 border border-amber-100/50 flex flex-col gap-6">
 
         <div className="text-center space-y-1.5">
@@ -57,6 +65,72 @@ function Inscription() {
               type="text"
               placeholder="Votre identifiant"
               value={form.identifiant}
+              onChange={handleChange}
+              required
+              className="w-full text-base border border-amber-200/60 rounded-xl px-4 py-3 bg-amber-50/20 focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition-all duration-200 placeholder-amber-700/30 text-amber-950"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="nom" className="text-sm font-semibold text-amber-950/80">
+                Nom
+              </label>
+              <input
+                id="nom"
+                name="nom"
+                type="text"
+                placeholder="Votre nom"
+                value={form.nom}
+                onChange={handleChange}
+                required
+                className="w-full text-base border border-amber-200/60 rounded-xl px-4 py-3 bg-amber-50/20 focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition-all duration-200 placeholder-amber-700/30 text-amber-950"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="prenom" className="text-sm font-semibold text-amber-950/80">
+                Prénom
+              </label>
+              <input
+                id="prenom"
+                name="prenom"
+                type="text"
+                placeholder="Votre prénom"
+                value={form.prenom}
+                onChange={handleChange}
+                required
+                className="w-full text-base border border-amber-200/60 rounded-xl px-4 py-3 bg-amber-50/20 focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition-all duration-200 placeholder-amber-700/30 text-amber-950"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="email" className="text-sm font-semibold text-amber-950/80">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="vous@exemple.com"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className="w-full text-base border border-amber-200/60 rounded-xl px-4 py-3 bg-amber-50/20 focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition-all duration-200 placeholder-amber-700/30 text-amber-950"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="telephone" className="text-sm font-semibold text-amber-950/80">
+              Téléphone
+            </label>
+            <input
+              id="telephone"
+              name="telephone"
+              type="tel"
+              placeholder="06 12 34 56 78"
+              value={form.telephone}
               onChange={handleChange}
               required
               className="w-full text-base border border-amber-200/60 rounded-xl px-4 py-3 bg-amber-50/20 focus:bg-white focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition-all duration-200 placeholder-amber-700/30 text-amber-950"

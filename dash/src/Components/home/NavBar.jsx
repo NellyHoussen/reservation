@@ -1,4 +1,4 @@
-import { FiUser, FiLogOut } from "react-icons/fi";
+import { FiUser, FiLogOut, FiPlusCircle } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
@@ -17,6 +17,15 @@ function NavBar() {
         <Link to="/voitures" className="cursor-pointer transition duration-300 hover:text-blue-500 hover:scale-110">Nos Voitures</Link>
         <Link to="/about" className="cursor-pointer transition duration-300 hover:text-blue-500 hover:scale-110">About</Link>
         <Link to="/contact" className="cursor-pointer transition duration-300 hover:text-blue-500 hover:scale-110">Contact</Link>
+
+        {user?.role === "ADMIN" && (
+          <Link
+            to="/admin/ajouter-voiture"
+            className="flex items-center gap-1 cursor-pointer transition duration-300 hover:text-blue-500 hover:scale-110"
+          >
+            <FiPlusCircle /> Ajouter voiture
+          </Link>
+        )}
 
         {user ? (
           <div className="flex items-center gap-3">

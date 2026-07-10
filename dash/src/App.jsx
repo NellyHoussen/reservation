@@ -1,11 +1,15 @@
 import HomePage from "./Pages/HomePage";
-import Voitures from "./Pages/Voiture";
+import Voitures from "./Pages/Voiture/Voiture";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Connexion from "./Pages/Connexion";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import NavBar from "./Components/home/NavBar";
 import Inscription from "./Pages/Inscription";
+import AjouterVoiture from "./Pages/Voiture/AjouteVoiture";
+import PageReservation from "./Pages/Reservation/PageReservation"
+import MesReservations from "./Pages/Reservation/MesReservation"
+
 function App() {
    /*
   h-* : hauteur
@@ -35,6 +39,10 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/Inscription" element={<Inscription />} />
+        <Route path="/admin/ajouter-voiture" element={<AjouterVoiture />} />
+        <Route path="/reservation/:voitureId" element={<PageReservation />} />
+      <Route path="/mes-reservations" element={<MesReservations />} />
+
       </Routes>
     </BrowserRouter>    
   )
