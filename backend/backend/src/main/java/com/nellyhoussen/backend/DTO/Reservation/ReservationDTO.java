@@ -9,10 +9,11 @@ public record ReservationDTO(
         Long id,
         Long voitureId,
         Long clientId,
-        String clientNomCompleye,
+        String clientNomComplet,
         LocalDate dateDebut,
         LocalDate dateFin,
         BigDecimal montantTotal,
-        StatutReservation statutReservation
+        StatutReservation statutReservation,
+        String voitureLibelle
 ) {
 }

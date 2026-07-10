@@ -17,18 +17,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin(origins = "http://localhost:5173")
-
 public class userController {
-
     private final userService service;
-
     @PostMapping("/register")
     public ResponseEntity<InscriptionGet> register(@Valid @RequestBody InscriptionPost dto) {
         log.info("POST /api/v1/users/register - identifiant: {}", dto.identifiant());
         InscriptionGet response = service.registre(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
     @PostMapping("/login")
     public ResponseEntity<userGet> login(@Valid @RequestBody userPost dto) {
         log.info("POST /api/v1/users/login - identifiant: {}", dto.identifiant());

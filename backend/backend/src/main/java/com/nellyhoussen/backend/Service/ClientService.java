@@ -10,6 +10,7 @@ import com.nellyhoussen.backend.mapStruct.ClientMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.annotations.processing.Find;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Transactional
-
+@Service
 public class ClientService  implements ClientServiceImplements {
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;

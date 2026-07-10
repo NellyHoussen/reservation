@@ -12,6 +12,7 @@ import org.mapstruct.Mapping;
 public interface userMap {
     @Mapping(target = "id", ignore = true)
     user toEntity(userPost data);
+    @Mapping(target = "clientId", ignore = true)
     userGet toDto(user data);
     @Mapping(target = "id", ignore = true)
     user toEntityRegistre(InscriptionPost data);

@@ -22,15 +22,19 @@ public class VoitureService implements VoitureServiceImpements {
 
     @Override
     public VoitureDTO creer(VoitureDTO dto) {
+        return creer(dto, dto.imageUrl());
+    }
+
+    public VoitureDTO creer(VoitureDTO dto, String imageUrl) {
         if (voitureRepository.existsByImmatriculation(dto.immatriculation())) {
             throw new ConflitException("Une voiture avec l'immatriculation " + dto.immatriculation() + " existe déjà");
         }
         Voiture voiture = mapper.toEntity(dto);
         voiture.setId(null);
         voiture.setDisponible(true);
+        voiture.setImageUrl(imageUrl);
         return mapper.toDTO(voitureRepository.save(voiture));
     }
-
 
     @Override
     @Transactional(readOnly = true)
@@ -55,7 +59,7 @@ public class VoitureService implements VoitureServiceImpements {
 
     @Override
     public VoitureDTO update(Long id, VoitureDTO dto) {
-        Voiture voiture= findBy(id);
+        Voiture voiture = findBy(id);
 
         voitureRepository.findByImmatriculation(dto.immatriculation())
                 .filter(v -> !v.getId().equals(id))
@@ -66,15 +70,16 @@ public class VoitureService implements VoitureServiceImpements {
         voiture.setModele(dto.modele());
         voiture.setImmatriculation(dto.immatriculation());
         voiture.setPrixParJour(dto.prixParJour());
-        voiture.setDisponible(dto.isDisponible());
-
-
+        voiture.setDisponible(dto.disponible());
+        return this.mapper.toDTO(voitureRepository.save(voiture));
     }
 
     @Override
     public void supprimer(Long id) {
-
+        Voiture as = findBy(id);
+        this.voitureRepository.delete(as);
     }
+
     private Voiture findBy(Long id) {
         return voitureRepository.findById(id)
                 .orElseThrow(() -> RessourceNotFoundException.pour("Voiture", id));

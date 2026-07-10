@@ -16,19 +16,18 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
     List<Reservation> findByVoitureId(Long voitureId);
 
     @Query("""
-        SELECT CASE WHEN COUNT(r) >0 THEN true ELSE false END
-        FROM Reservation r
-        WHERE r.voiture.id = :voitureId
-        AND r.status <> :statutExclu
-        AND r.dateDeBut <= :dateFin
-        AND r.dateFin >= :dateDebut
-""")
-    boolean existsChevaument(
+            SELECT CASE WHEN COUNT(r) > 0 THEN true ELSE false END
+            FROM Reservation r
+            WHERE r.voiture.id = :voitureId
+            AND r.statut <> :statutExclu
+            AND r.dateDebut <= :dateFin
+            AND r.dateFin >= :dateDebut
+            """)
+    boolean existsChevauchement(
             @Param("voitureId") Long voitureId,
             @Param("dateDebut") LocalDate dateDebut,
             @Param("dateFin") LocalDate dateFin,
             @Param("statutExclu") StatutReservation statutExclu
-
     );
 
 }

@@ -1,5 +1,6 @@
 package com.nellyhoussen.backend.Entity;
 
+import com.nellyhoussen.backend.Enum.Role;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,6 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "user")
-@Builder
 public class user {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,7 @@ public class user {
     String identifiant;
     @Column(nullable = false)
     String password;
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @Builder.Default
-    private List<Car> cars = new ArrayList<>();
-
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role = Role.USER;
 }

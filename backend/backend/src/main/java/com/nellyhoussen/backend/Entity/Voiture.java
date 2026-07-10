@@ -36,8 +36,10 @@ public class Voiture {
     @Builder.Default
     private boolean disponible = true;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @OneToMany(mappedBy = "voiture", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Reservation> reservations = new ArrayList<>();
 }
-

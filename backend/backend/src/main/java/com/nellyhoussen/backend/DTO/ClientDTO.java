@@ -10,15 +10,14 @@ public record ClientDTO(
         @NotBlank(message = "Le nom est obligatoire")
         String nom,
 
-    @NotBlank(message = "Le prénom est obligatoire")
-    String prenom,
+        @NotBlank(message = "Le prénom est obligatoire")
+        String prenom,
 
-    @NotBlank(message = "L'email est obligatoire")
-    @Email(message = "Email invalide")
-    String email,
-
-@NotBlank(message = "Le téléphone est obligatoire")
-String telephone
+        @NotBlank(message = "L'email est obligatoire")
+        @Email(message = "Email invalide")
+        String email,
+        @NotBlank(message = "Le téléphone est obligatoire")
+        String telephone
 
 ) {
 }
