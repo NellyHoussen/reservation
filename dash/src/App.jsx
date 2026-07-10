@@ -1,9 +1,13 @@
-//import modules image
+import HomePage from "./Pages/HomePage";
+import Voitures from "./Pages/Voiture";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import Connexion from "./Pages/Connexion";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
 import NavBar from "./Components/home/NavBar";
-import AvantageSliper from "./Components/home/AvantageSliper";
-import Reserver from "./Components/home/Reserver";
+import Inscription from "./Pages/Inscription";
 function App() {
-  /*
+   /*
   h-* : hauteur
   flex : active flexbox
   justify-between : espace entre éléments
@@ -17,21 +21,23 @@ function App() {
   transition + duration : animation fluide
   -------------------------** npm install react-icons----------------
   --->import pour apporter des icons
-
+-------> npm install react-router-dom
   */
 
-
-    
-    
-return (
-    <div >
-     <NavBar />
-      <main>
-        <AvantageSliper />
-      </main>
-      <Reserver/>
-    </div>
-);
+       
+  return (
+   <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/voitures" element={<Voitures />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/connexion" element={<Connexion />} />
+        <Route path="/Inscription" element={<Inscription />} />
+      </Routes>
+    </BrowserRouter>    
+  )
 } 
 
 export default App;
